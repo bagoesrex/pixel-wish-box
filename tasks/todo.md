@@ -2,11 +2,12 @@
 
 ## Status
 
-- **Status:** Draft untuk ditinjau
+- **Status:** Disetujui
 - **Tanggal:** 3 Agustus 2026
+- **Tanggal persetujuan:** 3 Agustus 2026
 - **PRD:** [`../docs/prd/pixel-wish-box.md`](../docs/prd/pixel-wish-box.md)
 - **Plan:** [`./plan.md`](./plan.md)
-- **Fase:** Tasks; implementasi belum dimulai.
+- **Fase:** Tasks 1-3 selesai; Task 4 menunggu empat foto kenangan dari pengguna.
 
 ## Aturan Eksekusi
 
@@ -43,15 +44,17 @@
 
 **Acceptance criteria:**
 
-- [ ] `pnpm test -- --run` menjalankan test sekali dan keluar dengan status sukses.
-- [ ] `pnpm test:watch` tersedia untuk development tanpa mengubah script existing.
-- [ ] Alias `@/` dapat digunakan dari test dan setup melakukan cleanup antar-test.
+- [x] `pnpm test -- --run` menjalankan test sekali dan keluar dengan status sukses.
+- [x] `pnpm test:watch` tersedia untuk development tanpa mengubah script existing.
+- [x] Alias `@/` dapat digunakan dari test dan setup melakukan cleanup antar-test.
 
 **Verification:**
 
-- [ ] `pnpm test -- --run tests/smoke.test.tsx`
+- [x] `pnpm test -- --run tests/smoke.test.tsx`
 - [ ] `pnpm exec tsc --noEmit`
 - [ ] `pnpm format:check`
+
+Catatan implementasi: focused test dan format check file Task 1 lulus. Gate global tetap terbuka karena empat `<Image />` tanpa props di prototype `WishBoxPanel` dan formatting UI existing; keduanya dijadwalkan pada task UI berikutnya.
 
 **Dependencies:** prerequisites test tooling approval.
 
@@ -79,15 +82,17 @@
 
 **Acceptance criteria:**
 
-- [ ] `wishBoxContent` mencakup metadata, pengirim, penerima, pesan, dua karakter, dan tepat empat memories.
-- [ ] Error validasi menyebut path field yang salah dan menolak nilai kosong/oversized.
-- [ ] Kontrak dan hasil validasi dapat dikirim ke Client Component sebagai data serializable.
+- [x] `wishBoxContent` mencakup metadata, pengirim, penerima, pesan, dua karakter, dan tepat empat memories.
+- [x] Error validasi menyebut path field yang salah dan menolak nilai kosong/oversized.
+- [x] Kontrak dan hasil validasi dapat dikirim ke Client Component sebagai data serializable.
 
 **Verification:**
 
-- [ ] `pnpm test -- --run tests/validate-wish-box-content.test.ts`
+- [x] `pnpm test -- --run tests/validate-wish-box-content.test.ts`
 - [ ] `pnpm exec tsc --noEmit`
 - [ ] Review memastikan data personal hanya didefinisikan di `constants`.
+
+Catatan implementasi: delapan focused tests, targeted lint, dan targeted format check lulus. Type-check global masih tertahan baseline `WishBoxPanel`; teks prototype yang hard-coded dihapus pada Task 9.
 
 **Dependencies:** Task 1.
 
@@ -107,15 +112,15 @@
 
 **Acceptance criteria:**
 
-- [ ] Background tersedia sebagai `public/images/background.png`.
-- [ ] Karakter tersedia sebagai `public/images/character/closed.png` dan `open.png`.
-- [ ] Kedua file karakter tetap 744×970 dan dapat dibuka sebagai PNG valid.
+- [x] Background tersedia sebagai `public/images/background.png`.
+- [x] Karakter tersedia sebagai `public/images/character/closed.png` dan `open.png`.
+- [x] Kedua file karakter tetap 744×970 dan dapat dibuka sebagai PNG valid.
 
 **Verification:**
 
-- [ ] Bandingkan ukuran byte/hash sebelum dan sesudah perpindahan untuk membuktikan tidak ada transformasi.
-- [ ] Periksa dimensi kedua gambar karakter.
-- [ ] `git status --short public`
+- [x] Bandingkan ukuran byte/hash sebelum dan sesudah perpindahan untuk membuktikan tidak ada transformasi.
+- [x] Periksa dimensi kedua gambar karakter.
+- [x] `git status --short public`
 
 **Dependencies:** Task 2.
 
@@ -124,8 +129,10 @@
 - `public/main-background.png` → `public/images/background.png`
 - `public/person-closed-box.png` → `public/images/character/closed.png`
 - `public/person-opened-box.png` → `public/images/character/open.png`
+- `app/page.tsx`
+- `app/globals.css`
 
-**Estimated scope:** Medium, 3 file moves.
+**Estimated scope:** Medium, 3 file moves and 2 reference updates.
 
 ---
 
